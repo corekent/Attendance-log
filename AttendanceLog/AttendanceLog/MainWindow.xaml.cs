@@ -1,4 +1,5 @@
 ﻿using AttendanceLog.Models;
+using AttendanceLog.Storage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,28 +23,15 @@ namespace AttendanceLog
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private readonly string PATH = $"{Environment.CurrentDirectory}\\Storage\\Students.json";
+        private FileIO _fileIO;
         ObservableCollection<StudentModel> _studentsList = new ObservableCollection<StudentModel> { };
 
         
         public MainWindow()
         {
             InitializeComponent();                        
-        }               
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            _studentsList = new ObservableCollection<StudentModel>()
-            {
-                new StudentModel(){Name = "имя", Number = 1},
-                new StudentModel(){Name = "имя2"}
-            };
-
-            dg_Attendance.ItemsSource = _studentsList;
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Button_AddNameGroup_Click(object sender, RoutedEventArgs e)
@@ -52,11 +40,39 @@ namespace AttendanceLog
             CheckInput(groupsName);
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _studentsList = _fileIO.LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Close();
+            }
+            _fileIO = new FileIO(PATH);
+            dg_Attendance.ItemsSource = _studentsList;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
         private void Button_StartDate_Click(object sender, RoutedEventArgs e)
         {
 
             //DateTime startDate = 
         }
+
+        //private void SaveStartDate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    DateTime startDay = StartDate.DisplayDate.Date;
+        //    MainWindow.StartDateTextBox = Convert.ToString(startDay);
+        //}
 
         private void CheckInput(string checkString)
         {

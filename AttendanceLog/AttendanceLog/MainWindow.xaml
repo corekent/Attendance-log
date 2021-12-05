@@ -7,32 +7,32 @@
         mc:Ignorable="d"
         Title="Журнал посещаемости" Height="457" Width="845" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dg_Attendance" FontSize="15" FontWeight="Bold" Margin="10,120,10,10" AutoGenerateColumns="False" >
+        <DataGrid x:Name="dg_Attendance" FontSize="12" FontWeight="Bold" Margin="10,130,10,0" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path = Number}" Width="30" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Студент" Binding="{Binding Path = Name}" Width="200" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Посещаемость, %" Binding="{Binding Path = Attendance}" Width="150" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Посещаемость, %" Binding="{Binding Path = Attendance}" Width="115" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Даты занятий" Width="*" IsReadOnly="False"/>
             </DataGrid.Columns>
 
         </DataGrid>
         <Grid HorizontalAlignment="Left" Height="0" Margin="10,120,0,0" VerticalAlignment="Top" Width="0"/>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="500">
+        <Grid HorizontalAlignment="Left" Height="115" Margin="10,10,0,0" VerticalAlignment="Top" Width="500">
             <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ru-ru" Text="Группа:"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"><Run Text="Начало занятий"/><Run Language="ru-ru" Text=":"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"><Run Text="Колличество н"/><Run Language="ru-ru" Text="едель:"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"><Run Language="ru-ru" Text="Дни недели:"/></TextBlock>
-            <Grid x:Name="DaysOfWeek" HorizontalAlignment="Left" Height="30" Margin="87,68,0,0" VerticalAlignment="Top" Width="110" Background="#FFBBB4B4">
+            <TextBlock HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"><Run Text="Начало занятий"/><Run Language="ru-ru" Text=":"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="10,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"><Run Text="Колличество н"/><Run Language="ru-ru" Text="едель:"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"><Run Text="Дни "/><Run Language="ru-ru" Text="занятий"/><Run Text=":"/></TextBlock>
+            <Grid x:Name="DaysOfWeek" HorizontalAlignment="Left" Height="25" Margin="93,84,0,0" VerticalAlignment="Top" Width="110" Background="#FFBBB4B4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" Text="пн" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8"/>
-                <CheckBox Content="CheckBoxMonday" HorizontalAlignment="Center" Height="15" Grid.Row="1" VerticalAlignment="Center" Width="15" Checked="CheckBox_Checked"/>
+                <CheckBox Content="CheckBoxMonday" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Checked="CheckBox_Checked" Margin="0,10,0,0" Grid.RowSpan="2"/>
                 <TextBlock HorizontalAlignment="Center" Text="вт" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="1"/>
-                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" Grid.Row="1" VerticalAlignment="Center" Width="15" Grid.Column="1"/>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="1" Margin="0,10,0,0" Grid.RowSpan="2"/>
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="2"><Run Language="ru-ru" Text="ср"/></TextBlock>
-                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" Grid.Row="1" VerticalAlignment="Center" Width="15" Grid.Column="2"/>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="2" Margin="0,10,0,0" Grid.RowSpan="2"/>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -43,12 +43,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
             </Grid>
-            <TextBox x:Name="GroupsName" HorizontalAlignment="Left" Height="16" Margin="54,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-            <TextBox x:Name="StartDateTextBox" HorizontalAlignment="Left" Height="16" Margin="102,30,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
-            <TextBox HorizontalAlignment="Left" Height="16" Margin="127,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
-            <Button x:Name="AddNameGroup" Content="+" HorizontalAlignment="Left" Height="16" Margin="200,10,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_AddNameGroup_Click"/>
-            <Button x:Name="StartDate" Content="+" HorizontalAlignment="Left" Height="16" Margin="200,30,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_StartDate_Click"/>
-
+            <TextBox x:Name="GroupsName" HorizontalAlignment="Left" Height="16" Margin="54,11,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
+            <TextBox HorizontalAlignment="Left" Height="16" Margin="127,62,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+            <Button x:Name="AddNameGroup" Content="+" HorizontalAlignment="Left" Height="16" Margin="208,10,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_AddNameGroup_Click"/>
+            <Button x:Name="StartDate" Content="+" HorizontalAlignment="Left" Height="16" Margin="208,34,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_StartDate_Click"/>
+            <DatePicker  HorizontalAlignment="Left" Height="25" Margin="102,31,0,0" VerticalAlignment="Top" Width="101"/>
         </Grid>
 
     </Grid>

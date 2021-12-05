@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceLog.Calc
 {
-    class LessonsDays
+    class Attendance
     {
         public bool Day { get; set; }
 
