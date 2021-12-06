@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace AttendanceLog.Models
 {
-    public class StudentModel: INotifyPropertyChanged
+    public class StudentModel : INotifyPropertyChanged
     {
-        public int Number { get; set; }
+       
+
         private string _name;
-        
         public int Attendance { get; set; }
 
-        public string Name 
+        
+        public string Name
         {
             get
             {
                 return _name;
-            } 
+            }
             set
             {
-                if(_name == value)
+                if (_name == value)
                 {
                     return;
                 }
@@ -34,7 +35,7 @@ namespace AttendanceLog.Models
 
             }
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void ChengedName(string Name = "")
@@ -46,4 +47,3 @@ namespace AttendanceLog.Models
         }
     }
 }
- 

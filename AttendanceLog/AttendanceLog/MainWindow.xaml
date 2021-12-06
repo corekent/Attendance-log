@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Журнал посещаемости" Height="457" Width="845" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dg_Attendance" FontSize="12" FontWeight="Bold" Margin="10,130,10,0" AutoGenerateColumns="False" >
+        <DataGrid x:Name="dg_Attendance" FontSize="12" FontWeight="Bold" Margin="10,130,10,0" AutoGenerateColumns="False" LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№" Binding="{Binding Path = Number}" Width="30" IsReadOnly="True"/>
+
                 <DataGridTextColumn Header="Студент" Binding="{Binding Path = Name, UpdateSourceTrigger=PropertyChanged}" Width="200" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Посещаемость, %" Binding="{Binding Path = Attendance}" Width="115" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Даты занятий" Width="*" IsReadOnly="True"/>
@@ -33,6 +33,14 @@
                 <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="1" Margin="0,10,0,0" Grid.RowSpan="2"/>
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="2"><Run Language="ru-ru" Text="ср"/></TextBlock>
                 <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="2" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="3"><Run Language="ru-ru" Text="чт"/></TextBlock>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="3" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="4" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="5" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                <CheckBox Content="CheckBox" HorizontalAlignment="Center" Height="15" VerticalAlignment="Top" Width="15" Grid.Column="6" Margin="0,10,0,0" Grid.RowSpan="2"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="4"><Run Language="ru-ru" Text="п"/><Run Text="т"/></TextBlock>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="5"><Run Language="ru-ru" Text="сб"/></TextBlock>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="15" FontSize="8" Grid.Column="6" Width="9" Text="вс"/>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -44,10 +52,13 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <TextBox x:Name="GroupsName" HorizontalAlignment="Left" Height="16" Margin="54,11,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="149"/>
-            <TextBox HorizontalAlignment="Left" Height="16" Margin="127,62,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
-            <Button x:Name="AddNameGroup" Content="+" HorizontalAlignment="Left" Height="16" Margin="208,10,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_AddNameGroup_Click"/>
-            <Button x:Name="AddStartDate" Content="+" HorizontalAlignment="Left" Height="16" Margin="208,34,0,0" VerticalAlignment="Top" Width="16" FontSize="9" Click="Button_AddStartDate_Click"/>
+            <TextBox x:Name="CountOfWeeks" HorizontalAlignment="Left" Height="16" Margin="127,62,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="76"/>
+            <Button x:Name="AddNameGroup" Content="сохранить" HorizontalAlignment="Left" Height="16" Margin="208,11,0,0" VerticalAlignment="Top" Width="48" FontSize="9" Click="Button_AddNameGroup_Click"/>
+            <Button x:Name="AddStartDate" Content="сохранить" HorizontalAlignment="Left" Height="16" Margin="208,36,0,0" VerticalAlignment="Top" Width="48" FontSize="9" Click="Button_AddStartDate_Click"/>
             <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Height="25" Margin="102,31,0,0" VerticalAlignment="Top" Width="101" IsDropDownOpen="False"/>
+            <Button x:Name="AddCountOfWeek" Content="сохранить" HorizontalAlignment="Left" Height="16" Margin="208,62,0,0" VerticalAlignment="Top" Width="48" FontSize="9" Click="Button_AddStartDate_Click"/>
+            <Button x:Name="AddStartDate_Copy1" Content="сохранить" HorizontalAlignment="Left" Height="16" Margin="208,87,0,0" VerticalAlignment="Top" Width="48" FontSize="9" Click="Button_AddStartDate_Click"/>
+            <Button x:Name="AddStartDate_Copy2" Content="расчитать дату занятий" HorizontalAlignment="Left" Height="22" Margin="316,87,0,0" VerticalAlignment="Top" Width="101" FontSize="9" Click="Button_AddStartDate_Click"/>
         </Grid>
 
     </Grid>

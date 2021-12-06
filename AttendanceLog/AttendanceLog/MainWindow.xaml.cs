@@ -25,10 +25,12 @@ namespace AttendanceLog
     public partial class MainWindow : Window
     {
 
-        private readonly string PATH = $"{Environment.CurrentDirectory}\\Storage\\Students.json";
-        private FileIO _fileIO;
+        private readonly string PATH_Students = $"{Environment.CurrentDirectory}\\Storage\\Students.json";
+        private readonly string PATH_Group = $"{Environment.CurrentDirectory}\\Storage\\Group.json";
+        private FileStudentsIO _fileStudentsIO;
+        private FileStudentsIO _fileGroupIO;
         ObservableCollection<StudentModel> _studentsList = new ObservableCollection<StudentModel> { };
-
+        ObservableCollection<GroupModel> _groupList = new ObservableCollection<GroupModel> { };
         
         public MainWindow()
         {
@@ -37,6 +39,7 @@ namespace AttendanceLog
 
         private void Button_AddNameGroup_Click(object sender, RoutedEventArgs e)
         {
+           
             string groupsName = GroupsName.Text.Trim();
             CheckInput(groupsName, 1);
         }
@@ -47,6 +50,19 @@ namespace AttendanceLog
             string startDate = Convert.ToString(StartDate);
             CheckInput(startDate, 2);
         }
+        private void Button_AddCountOfWeek_Click(object sender, RoutedEventArgs e)
+        {
+            string countOfWeeks = CountOfWeeks.Text.Trim();
+            CheckInput(countOfWeeks, 1);
+            int counWeeks = Convert.ToInt32(countOfWeeks);
+        }
+
+        //private void CountOfWeeks_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    string countOfWeeks = CountOfWeeks.Text.Trim();
+        //    CheckInput(countOfWeeks, 1);
+        //    int counWeeks = Convert.ToInt32(countOfWeeks);
+        //}
 
         private void CheckInput(string checkString, int type)
         {
@@ -74,14 +90,17 @@ namespace AttendanceLog
         //    MainWindow.StartDateTextBox = Convert.ToString(startDay);
         //}
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-           
-            _fileIO = new FileIO(PATH);            
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {           
+            _fileStudentsIO = new FileStudentsIO(PATH_Students);
             try
             {
-                _studentsList = _fileIO.LoadData();
+                _studentsList = _fileStudentsIO.LoadData();
             }
             catch (Exception ex)
             {
@@ -101,7 +120,7 @@ namespace AttendanceLog
             //{
                 try
                 {
-                    _fileIO.SaveData(sender);
+                    _fileStudentsIO.SaveData(sender);
                 }
                 catch (Exception ex)
                 {
@@ -116,10 +135,6 @@ namespace AttendanceLog
 
         }
 
-
-
-       
-
-       
+        
     }
 }

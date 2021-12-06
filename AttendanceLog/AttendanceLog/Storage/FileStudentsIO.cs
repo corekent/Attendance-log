@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace AttendanceLog.Storage
 {
-    public class FileIO
+    public class FileStudentsIO
     {
-        private string PATH;
+        private string PATH_Students;
 
-        public FileIO(string path)
+        public FileStudentsIO(string path)
         {
-            PATH = path;
+            PATH_Students = path;
         }
 
         public void SaveData(object studentModels)
         {
-            using (StreamWriter writer = File.CreateText(PATH))
+            using (StreamWriter writer = File.CreateText(PATH_Students))
             {
                 string output = JsonConvert.SerializeObject(studentModels);
                 writer.Write(output);
@@ -30,13 +30,13 @@ namespace AttendanceLog.Storage
 
         public ObservableCollection<StudentModel> LoadData()
         {
-            var fileExist = File.Exists(PATH);
+            var fileExist = File.Exists(PATH_Students);
             if (!fileExist)
             {
-                File.CreateText(PATH).Dispose();
+                File.CreateText(PATH_Students).Dispose();
                 return new ObservableCollection<StudentModel>();
             }
-            var reader = File.OpenText(PATH);
+            var reader = File.OpenText(PATH_Students);
 
             var fileText = reader.ReadToEnd();
             return JsonConvert.DeserializeObject<ObservableCollection<StudentModel>>(fileText);
